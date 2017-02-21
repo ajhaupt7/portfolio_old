@@ -10,14 +10,75 @@
     <!--build:css css/styles.min.css-->
     <link rel="stylesheet" href="css/styles.css">
     <!--endbuild-->
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,600|Roboto:400,500,300,700,100' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600,700" rel="stylesheet">
   </head>
 
   <body>
-    <h1>Test</h1>
-    <p>Hello here I am, a sad guy</p>
+    <section class="main" id="app">
+      <header>
+        <div class="logo" @click="setActiveProject($event)">
+          <svg viewBox="82.5 39.5 157 187">
+            <g fill="none" stroke="#000" stroke-width="13" stroke-miterlimit="10">
+              <path stroke-linecap="square" d="M146.771 166.334c.015-13.863 3.82-28.028.43-41.77-3.73-15.116-18.676-20.86-32.872-16.259-13.882 4.5-25.597 20.931-18.915 35.691 3.364 7.434 12.636 10.033 19.998 11.291 8.779 1.499 18.273 1.721 27.12.828 19.086-1.926 33.364-16.935 43.071-32.444 8.119-12.973 13.121-27.653 14.986-42.827 1.396-11.345.76-26.306-11.804-31.026-5.109-1.92-11.957-2.55-16.65.765-3.959 2.797-5.515 7.735-6.146 12.326-1.598 11.613 1.224 24.004 3.664 35.315 2.39 11.067 4.975 22.107 6.761 33.295 2.344 14.691 1.665 22.206.19 33.889-.481 3.811-2.771 17.426-9.521 27.426" />
+              <path d="M164.958 196.084c2.72-4.066 6.61-7.123 10.578-9.896 4.415-3.088 8.921-6.071 13.507-8.898 5.92-3.648 12.137-6.745 19.125-7.578 3.818-.456 8.809.258 11.273 3.482 5.098 6.668 3.188 16.373 2.888 24.097-.192 4.897.041 11.632 3.487 15.49 2.431 2.719 6.209 3.961 9.517 5.223" />
+            </g>
+          </svg>
+        </div>
+      </header>
+      <div class="content" id="content">
+        <div v-if="activeProject" class="_active-project" key="activeProject.name">
+          <div class="_title-wrap">
+            <div class="_type">{{ activeProject.type }}</div>
+            <h1 class="_title">{{ activeProject.name }}</h1>
+            <div class="_subtitle">{{ makeSubtitle(activeProject.tech) }}</div>
+          </div>
+          <div class="divider"></div>
+          <div class="_description" v-html="activeProject.description"></div>
+        </div>
+        <div v-else class="_active-project">
+          <div class="_title-wrap">
+            <h1 class="_title">
+              <span>Andrew Haupt</span>
+            </h1>
+            <div class="_subtitle">Developer + Designer</div>
+          </div>
+          <div class="divider"></div>
+          <div class="_description">
+            <p>Hi, I'm Andrew - I live in Bend, Oregon and work for <a href='https://www.culturefoundry.com/' target='_blank'>Culture Foundry</a>, a web agency where I've helped craft sites for companies like <a href='https://www.belmontstakes.com/' target='_blank'>the Belmont Stakes</a>, <a href='https://us.organicindia.com/' target='_blank'>Organic India</a>, and <a href='https://www.miadonna.com/' target='_blank'>MiaDonna</a>.</p>
+            <p>I'm self-taught and constantly push myself to keep learning. In my spare time I hike, camp, read, cook, play the mandolin and build cool stuff like <a href='http://showmelivemusic.com/' target='_blank'>ShowMe</a> and <a href='http://www.wakkawizard.com/' target='_blank'>Wakka Wizard</a>.</p>
+            <p><a href='MAILTO:ajhaupt7@gmail.com' target='_blank'>Hit me up</a> for freelance work or a chat and a beer...</p>
+          </div>
+        </div>
+      </div>
+      <div class="projects" id="projects">
+        <transition name="hover-title">
+          <div v-if="hoverTitle" class="hover-title" :style="hoverStyles">{{ hoverTitle }}</div>
+        </transition>
+        <div class="track">
+          <div class="tile" v-for="project in projects" @mouseover="toggleHover($event, project, true)" @mouseleave="toggleHover($event, project)" @click="setActiveProject($event,project)">
+            <div class="_hover-overlay" :style="project.hoverStyles"></div>
+            <div class="_outer" :style="{ background: project.primaryColor }">
+              <div class="_wrap">
+                <div class="_inner" :style="getBackgroundStyles(project)"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="intro-message">
+      <span>
+        <span>Keep</span> <span>it</span> <span>Simple.</span>
+      <span>
+      <span>
+        <span>Make</span> <span>it</span> <span>Dope.</span>
+      <span>
+    </section>
     <!--build:js js/main.min.js -->
     <script src="js/vue.dev.js"></script>
+    <script src="js/velocity.min.js"></script>
+    <script src="js/TweenMax.min.js"></script>
+    <script src="js/projects.js"></script>
     <script src="js/main.js"></script>
     <!-- endbuild -->
   </body>
