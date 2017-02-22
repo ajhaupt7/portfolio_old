@@ -5,7 +5,8 @@ var app = new Vue({
   data: {
     projects: projects,
     filters: filters,
-    activeProject: null,
+    activeProject: aboutMe,
+    aboutMe: aboutMe,
     activeColor: [124, 242, 142],
     hoverTitle: null,
     hoverStyles: {},
@@ -14,6 +15,10 @@ var app = new Vue({
     filterDialogType: null,
     filterSetting: { type: null, name: null, val: null }
   },
+  created: function created() {
+    this.assignColorsAndFilters();
+  },
+
   computed: {
     renderedProjects: function renderedProjects() {
       var _filterSetting = this.filterSetting,
@@ -65,9 +70,10 @@ var app = new Vue({
     randomInt: function randomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);
     },
-    setActiveProject: function setActiveProject(event, project) {
+    setActiveProject: function setActiveProject(event, project, aboutMe) {
       var tile = event.target.closest(".tile");
-      this.activeProject = project || null;
+      var projectToSet = aboutMe ? this.aboutMe : project;
+      this.activeProject = projectToSet || null;
       this.activeColor = project ? project.primaryColor : this.randomColor();
       if (tile) {
         tile.classList.add('pulse');
@@ -84,7 +90,7 @@ var app = new Vue({
       this.filterDialogType = key;
     },
     closeActiveFilter: function closeActiveFilter(event) {
-      if (!event || this.filterDialogOpen && !event.target.closest(".filter-view")) {
+      if (!event || this.filterDialogOpen && !event.target.closest(".filter-view") || !this.filterDialogOpen && this.showFilters) {
         this.filterDialogOpen = false;
         this.filterDialogType = null;
         this.showFilters = false;
@@ -101,7 +107,6 @@ var app = new Vue({
 });
 
 // DOM Ready
-app.assignColorsAndFilters();
 var pulseButton = document.querySelectorAll(".pulse-button");
 document.addEventListener('click', function (event) {
   var target = event.target.closest(".pulse-button");

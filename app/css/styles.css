@@ -116,8 +116,16 @@ header .logo {
     .content ._title-wrap ._subtitle {
       letter-spacing: 1px; }
   .content ._description {
-    padding: 1rem 0;
+    padding: 0 0 1rem 0;
     letter-spacing: 0.5px; }
+
+.active-project-enter-active, .active-project-leave-active {
+  opacity: 1;
+  -webkit-transition: all 350ms cubic-bezier(0.75, -0.03, 0.33, 1.18);
+  transition: all 350ms cubic-bezier(0.75, -0.03, 0.33, 1.18); }
+
+.active-project-enter, .active-project-leave-to {
+  opacity: 0; }
 
 .projects {
   width: 35%;
@@ -237,20 +245,6 @@ header .logo {
   .tile:nth-child(20) {
     -webkit-transform: translate3d(-50%, 4180px, 0);
             transform: translate3d(-50%, 4180px, 0); }
-  .tile * {
-    -webkit-transition: all 500ms cubic-bezier(0.75, -0.03, 0.33, 1.18);
-    transition: all 500ms cubic-bezier(0.75, -0.03, 0.33, 1.18); }
-  .tile:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -35px 0 0 -35px;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    opacity: 0;
-    pointer-events: none; }
   .tile > ._hover-overlay {
     width: 170px;
     height: 170px;
@@ -300,8 +294,8 @@ header .logo {
   transition: all 500ms cubic-bezier(0.75, -0.03, 0.33, 1.18); }
 
 .tile-enter-active, .tile-leave-active {
-  width: 150px;
-  height: 150px;
+  -webkit-transform: scale(1);
+          transform: scale(1);
   opacity: 1; }
 
 .tile-enter, .tile-leave-to {

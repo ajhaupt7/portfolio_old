@@ -3,7 +3,8 @@ const app = new Vue({
   data: {
     projects: projects,
     filters: filters,
-    activeProject: null,
+    activeProject: aboutMe,
+    aboutMe: aboutMe,
     activeColor: [124, 242, 142],
     hoverTitle: null,
     hoverStyles: {},
@@ -11,6 +12,9 @@ const app = new Vue({
     filterDialogOpen: false,
     filterDialogType: null,
     filterSetting: { type: null, name: null, val: null }
+  },
+  created() {
+    this.assignColorsAndFilters();
   },
   computed: {
     renderedProjects() {
@@ -57,9 +61,10 @@ const app = new Vue({
     randomInt: function randomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);
     },
-    setActiveProject(event, project) {
+    setActiveProject(event, project, aboutMe) {
       const tile = event.target.closest(".tile");
-      this.activeProject = project || null;
+      const projectToSet = aboutMe ? this.aboutMe : project;
+      this.activeProject = projectToSet || null;
       this.activeColor = project ? project.primaryColor : this.randomColor();
       if (tile) {
         tile.classList.add('pulse');
@@ -76,7 +81,7 @@ const app = new Vue({
       this.filterDialogType = key;
     },
     closeActiveFilter(event) {
-      if (!event || (this.filterDialogOpen && !event.target.closest(".filter-view"))) {
+      if (!event || (this.filterDialogOpen && !event.target.closest(".filter-view")) || (!this.filterDialogOpen && this.showFilters)) {
         this.filterDialogOpen = false;
         this.filterDialogType = null;
         this.showFilters = false;
@@ -93,7 +98,6 @@ const app = new Vue({
 });
 
 // DOM Ready
-app.assignColorsAndFilters();
 const pulseButton = document.querySelectorAll(".pulse-button");
 document.addEventListener('click', (event) => {
   const target = event.target.closest(".pulse-button");
