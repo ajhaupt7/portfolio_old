@@ -7,6 +7,7 @@ const projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  url: 'https://showmelivemusic.com'
 }, {
   name: 'Wakka Wizard',
   logo: 'wakka_logo.jpg',
@@ -16,6 +17,7 @@ const projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  url: 'https://www.wakkawizard.com'
 }, {
   name: 'FOMO',
   logo: 'fomo_logo.png',
@@ -25,6 +27,7 @@ const projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  url: 'https://fomo.help'
 }, {
   name: 'Belmont Stakes',
   logo: 'belmont_logo.png',
@@ -34,6 +37,7 @@ const projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  url: 'https://www.belmontstakes.com/'
 }, {
   name: 'Gold Key PR',
   logo: 'goldkey_logo.png',
@@ -43,6 +47,7 @@ const projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  url: 'http://goldkeypr.com'
 }, {
   name: 'New York Racing Association',
   logo: 'nyra_logo.png',
@@ -52,6 +57,7 @@ const projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  url: 'https://www.nyra.com'
 }, {
   name: 'Organic India Herbal U',
   logo: 'oi_logo.png',
@@ -61,6 +67,7 @@ const projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  url: 'https://us.organicindia.com/'
 }, {
   name: 'Novapoint',
   logo: 'trimble_logo.png',
@@ -70,7 +77,19 @@ const projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  url: 'http://www.novapoint.com/'
 }]
+
+const filters = {
+  type: {
+    name: 'Project Type',
+    options: []
+  },
+  tech: {
+    name: 'Tech Stack',
+    options: []
+  }
+}
 
 
 const primaryColors = [

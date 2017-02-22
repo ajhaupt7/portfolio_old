@@ -8,7 +8,8 @@ var projects = [{
   tech: ['React', 'Redux', 'MongoDB', 'Node'],
   description: '',
   dates: '',
-  primaryColor: ''
+  primaryColor: '',
+  url: 'https://showmelivemusic.com'
 }, {
   name: 'Wakka Wizard',
   logo: 'wakka_logo.jpg',
@@ -17,7 +18,8 @@ var projects = [{
   tech: ['React', 'Redux', 'Node'],
   description: '',
   dates: '',
-  primaryColor: ''
+  primaryColor: '',
+  url: 'https://www.wakkawizard.com'
 }, {
   name: 'FOMO',
   logo: 'fomo_logo.png',
@@ -26,7 +28,8 @@ var projects = [{
   tech: ['React', 'Alt', 'Rails'],
   description: '',
   dates: '',
-  primaryColor: ''
+  primaryColor: '',
+  url: 'https://fomo.help'
 }, {
   name: 'Belmont Stakes',
   logo: 'belmont_logo.png',
@@ -35,7 +38,8 @@ var projects = [{
   tech: ['MODx', 'PHP', 'JS', 'MYSQL'],
   description: '',
   dates: '',
-  primaryColor: ''
+  primaryColor: '',
+  url: 'https://www.belmontstakes.com/'
 }, {
   name: 'Gold Key PR',
   logo: 'goldkey_logo.png',
@@ -44,7 +48,8 @@ var projects = [{
   tech: ['Wordpress', 'PHP', 'JS'],
   description: '',
   dates: '',
-  primaryColor: ''
+  primaryColor: '',
+  url: 'http://goldkeypr.com'
 }, {
   name: 'New York Racing Association',
   logo: 'nyra_logo.png',
@@ -53,7 +58,8 @@ var projects = [{
   tech: ['MODx', 'PHP', 'JS', 'MYSQL'],
   description: '',
   dates: '',
-  primaryColor: ''
+  primaryColor: '',
+  url: 'https://www.nyra.com'
 }, {
   name: 'Organic India Herbal U',
   logo: 'oi_logo.png',
@@ -62,7 +68,8 @@ var projects = [{
   tech: ['Vue', 'MODx'],
   description: '',
   dates: '',
-  primaryColor: ''
+  primaryColor: '',
+  url: 'https://us.organicindia.com/'
 }, {
   name: 'Novapoint',
   logo: 'trimble_logo.png',
@@ -71,7 +78,19 @@ var projects = [{
   tech: ['Drupal 8', 'JS'],
   description: '',
   dates: '',
-  primaryColor: ''
+  primaryColor: '',
+  url: 'http://www.novapoint.com/'
 }];
+
+var filters = {
+  type: {
+    name: 'Project Type',
+    options: []
+  },
+  tech: {
+    name: 'Tech Stack',
+    options: []
+  }
+};
 
 var primaryColors = [[0, 255, 221], [222, 75, 75], [218, 38, 104], [107, 187, 255], [237, 98, 130], [249, 103, 137], [241, 142, 178], [253, 85, 92], [59, 204, 133], [255, 116, 35], [83, 243, 176], [254, 140, 127], [31, 172, 255], [0, 208, 255], [88, 155, 255], [83, 243, 176], [84, 218, 164], [255, 139, 139], [22, 124, 128], [191, 181, 215], [240, 207, 97], [241, 102, 86], [229, 112, 102]];
