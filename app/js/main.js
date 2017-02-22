@@ -4,7 +4,6 @@ var app = new Vue({
   el: '#app',
   data: {
     projects: projects,
-    renderedProjects: projects,
     filters: filters,
     activeProject: null,
     activeColor: [124, 242, 142],
@@ -13,7 +12,18 @@ var app = new Vue({
     showFilters: false,
     filterDialogOpen: false,
     filterDialogType: null,
-    filterSetting: null
+    filterSetting: { type: null, name: null, val: null }
+  },
+  computed: {
+    renderedProjects: function renderedProjects() {
+      var _filterSetting = this.filterSetting,
+          type = _filterSetting.type,
+          val = _filterSetting.val;
+
+      return this.projects.filter(function (project) {
+        return val ? type == 'tech' ? project[type].indexOf(val) !== -1 : project[type] === val : project;
+      });
+    }
   },
   methods: {
     getBackgroundStyles: function getBackgroundStyles(project) {
@@ -51,6 +61,10 @@ var app = new Vue({
         if (filters['type'].options.indexOf(project.type) === -1) filters['type'].options.push(project.type);
       });
     },
+
+    randomInt: function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    },
     setActiveProject: function setActiveProject(event, project) {
       var tile = event.target.closest(".tile");
       this.activeProject = project || null;
@@ -76,16 +90,12 @@ var app = new Vue({
         this.showFilters = false;
       }
     },
-    filterProjects: function filterProjects(type, val, name) {
-      this.renderedProjects = this.projects.map(function (project) {
-        if (type == 'tech') {
-          if (project[type].indexOf(val) !== -1) return project;
-        } else {
-          if (project[type] === val) return project;
-        }
-      }).filter(Boolean);
-      this.filterSetting = { val: val, name: name };
+    setFilter: function setFilter(type, val, name) {
+      this.filterSetting = { val: val, name: name, type: type };
       this.closeActiveFilter();
+    },
+    resetFilters: function resetFilters() {
+      this.filterSetting = { type: null, name: null, val: null };
     }
   }
 });

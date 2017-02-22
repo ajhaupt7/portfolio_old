@@ -9,6 +9,7 @@ var projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  rendered: true,
   url: 'https://showmelivemusic.com'
 }, {
   name: 'Wakka Wizard',
@@ -19,6 +20,7 @@ var projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  rendered: true,
   url: 'https://www.wakkawizard.com'
 }, {
   name: 'FOMO',
@@ -29,6 +31,7 @@ var projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  rendered: true,
   url: 'https://fomo.help'
 }, {
   name: 'Belmont Stakes',
@@ -39,6 +42,7 @@ var projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  rendered: true,
   url: 'https://www.belmontstakes.com/'
 }, {
   name: 'Gold Key PR',
@@ -49,6 +53,7 @@ var projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  rendered: true,
   url: 'http://goldkeypr.com'
 }, {
   name: 'New York Racing Association',
@@ -59,6 +64,7 @@ var projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  rendered: true,
   url: 'https://www.nyra.com'
 }, {
   name: 'Organic India Herbal U',
@@ -69,6 +75,7 @@ var projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  rendered: true,
   url: 'https://us.organicindia.com/'
 }, {
   name: 'Novapoint',
@@ -79,6 +86,7 @@ var projects = [{
   description: '',
   dates: '',
   primaryColor: '',
+  rendered: true,
   url: 'http://www.novapoint.com/'
 }];
 

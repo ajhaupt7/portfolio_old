@@ -2,7 +2,6 @@ const app = new Vue({
   el: '#app',
   data: {
     projects: projects,
-    renderedProjects: projects,
     filters: filters,
     activeProject: null,
     activeColor: [124, 242, 142],
@@ -11,7 +10,15 @@ const app = new Vue({
     showFilters: false,
     filterDialogOpen: false,
     filterDialogType: null,
-    filterSetting: null
+    filterSetting: { type: null, name: null, val: null }
+  },
+  computed: {
+    renderedProjects() {
+      const { type, val } = this.filterSetting;
+      return this.projects.filter((project) => {
+        return val ? (type == 'tech' ? project[type].indexOf(val) !== -1 : project[type] === val) : project;
+      });
+    }
   },
   methods: {
     getBackgroundStyles(project) {
@@ -47,6 +54,9 @@ const app = new Vue({
         if (filters['type'].options.indexOf(project.type) === -1) filters['type'].options.push(project.type);
       });
     },
+    randomInt: function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    },
     setActiveProject(event, project) {
       const tile = event.target.closest(".tile");
       this.activeProject = project || null;
@@ -72,16 +82,12 @@ const app = new Vue({
         this.showFilters = false;
       }
     },
-    filterProjects(type, val, name) {
-      this.renderedProjects = this.projects.map((project) => {
-        if (type == 'tech') {
-          if (project[type].indexOf(val) !== -1) return project
-        } else {
-          if (project[type] === val) return project
-        }
-      }).filter(Boolean);
-      this.filterSetting = { val: val, name: name };
+    setFilter(type, val, name) {
+      this.filterSetting = { val: val, name: name, type: type };
       this.closeActiveFilter();
+    },
+    resetFilters() {
+      this.filterSetting = { type: null, name: null, val: null };
     }
   }
 });
