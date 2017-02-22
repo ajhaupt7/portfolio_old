@@ -30,6 +30,9 @@ var app = new Vue({
       });
     }
   },
+  watch: {
+    activeProject: function activeProject(_activeProject, prevProject) {}
+  },
   methods: {
     getBackgroundStyles: function getBackgroundStyles(project) {
       return { backgroundImage: 'url(images/logos/' + project.logo + ')' };
@@ -71,10 +74,21 @@ var app = new Vue({
       return Math.floor(Math.random() * (max - min + 1) + min);
     },
     setActiveProject: function setActiveProject(event, project, aboutMe) {
+      var _this2 = this;
+
       var tile = event.target.closest(".tile");
       var projectToSet = aboutMe ? this.aboutMe : project;
-      this.activeProject = projectToSet || null;
       this.activeColor = project ? project.primaryColor : this.randomColor();
+      if (projectToSet) {
+        var contentArea = document.getElementById('active-project');
+        contentArea.classList.add('transitioning');
+        setTimeout(function () {
+          _this2.activeProject = projectToSet || null;
+        }, 600);
+        setTimeout(function () {
+          contentArea.classList.remove('transitioning');
+        }, 1200);
+      }
       if (tile) {
         tile.classList.add('pulse');
         setTimeout(function () {

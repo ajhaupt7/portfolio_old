@@ -24,6 +24,11 @@ const app = new Vue({
       });
     }
   },
+  watch: {
+    activeProject(activeProject, prevProject) {
+
+    }
+  },
   methods: {
     getBackgroundStyles(project) {
       return { backgroundImage: `url(images/logos/${project.logo})` };
@@ -64,8 +69,17 @@ const app = new Vue({
     setActiveProject(event, project, aboutMe) {
       const tile = event.target.closest(".tile");
       const projectToSet = aboutMe ? this.aboutMe : project;
-      this.activeProject = projectToSet || null;
       this.activeColor = project ? project.primaryColor : this.randomColor();
+      if (projectToSet) {
+        const contentArea = document.getElementById('active-project');
+        contentArea.classList.add('transitioning');
+        setTimeout(() => {
+          this.activeProject = projectToSet || null;
+        }, 600);
+        setTimeout(() => {
+          contentArea.classList.remove('transitioning');
+        }, 1200);
+      }
       if (tile) {
         tile.classList.add('pulse');
         setTimeout(() => {

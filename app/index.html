@@ -26,18 +26,16 @@
         </div>
       </header>
       <div class="content" id="content">
-        <transition name="active-project">
-          <div v-if="activeProject" class="active-project" key="activeProject.name">
-            <div class="_title-wrap">
-              <div class="_type">{{ activeProject.type }}</div>
-              <h1 class="_title">{{ activeProject.name }}</h1>
-              <div class="_subtitle">{{ makeSubtitle(activeProject.tech) }}</div>
-            </div>
-            <div class="divider"></div>
-            <div class="_description" v-html="activeProject.description"></div>
-            <div class="_link" v-if="activeProject.url">Check it out <a :href="activeProject.url" target="_blank">here!</a></div>
+        <div v-if="activeProject" id="active-project" key="activeProject.name">
+          <div class="_title-wrap">
+            <div class="_type">{{ activeProject.type }}</div>
+            <h1 class="_title">{{ activeProject.name }}</h1>
+            <div class="_subtitle">{{ makeSubtitle(activeProject.tech) }}</div>
           </div>
-        </transition>
+          <div class="divider"></div>
+          <div class="_description" v-html="activeProject.description"></div>
+          <div class="_link" v-if="activeProject.url">Check it out <a :href="activeProject.url" target="_blank">here!</a></div>
+        </div>
       </div>
       <div class="projects" id="projects">
         <transition name="filter-monitor">

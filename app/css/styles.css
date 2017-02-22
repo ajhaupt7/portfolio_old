@@ -119,13 +119,53 @@ header .logo {
     padding: 0 0 1rem 0;
     letter-spacing: 0.5px; }
 
-.active-project-enter-active, .active-project-leave-active {
-  opacity: 1;
-  -webkit-transition: all 350ms cubic-bezier(0.75, -0.03, 0.33, 1.18);
-  transition: all 350ms cubic-bezier(0.75, -0.03, 0.33, 1.18); }
+#active-project > * {
+  max-height: 1500px;
+  overflow: hidden; }
 
-.active-project-enter, .active-project-leave-to {
-  opacity: 0; }
+#active-project.transitioning ._type {
+  -webkit-animation: changeProject 800ms ease-in-out forwards;
+          animation: changeProject 800ms ease-in-out forwards; }
+
+#active-project.transitioning ._title {
+  -webkit-animation: changeProject 800ms ease-in-out 100ms forwards;
+          animation: changeProject 800ms ease-in-out 100ms forwards; }
+
+#active-project.transitioning ._subtitle {
+  -webkit-animation: changeProject 800ms ease-in-out 200ms forwards;
+          animation: changeProject 800ms ease-in-out 200ms forwards; }
+
+#active-project.transitioning ._description, #active-project.transitioning ._link {
+  -webkit-animation: changeProject 800ms ease-in-out 300ms forwards;
+          animation: changeProject 800ms ease-in-out 300ms forwards; }
+
+@-webkit-keyframes changeProject {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); }
+  40% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px); }
+  60% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px); }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); } }
+
+@keyframes changeProject {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); }
+  40% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px); }
+  60% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px); }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); } }
 
 .projects {
   width: 35%;
