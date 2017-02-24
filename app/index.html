@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <!--endbuild-->
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600,700" rel="stylesheet">
+    <script src="https://use.fontawesome.com/ca89231ab4.js"></script>
   </head>
 
   <body>
@@ -24,6 +25,14 @@
             </g>
           </svg>
         </div>
+        <menu>
+          <article><a href="javascript:void()">About Me</a></article>
+          <article><a href="javascript:void()">Facebook</a></article>
+          <article><a href="javascript:void()">Github</a></article>
+          <article><a href="javascript:void()">LinkedIn</a></article>
+          <article><a href="javascript:void()">Soundcloud</a></article>
+          <article><a href="javascript:void()">Email</a></article>
+        </menu>
       </header>
       <div class="content" id="content">
         <div v-if="activeProject" id="active-project" key="activeProject.name">
@@ -63,23 +72,23 @@
           </div>
         </transition-group>
       </div>
-      <div class="filters">
-        <div class="button pulse-button" :style="{ background: stringifyColor(activeColor) }" @click.stop="showFilters = !showFilters">
-          <figure>
-            <svg fill="#FFF" height="36" viewBox="0 0 24 24" width="36">
-              <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" />
-              <path d="M0 0h24v24H0z" fill="none" />
-            </svg>
-            <span>Filters</span>
-          </figure>
+      <nav class="menu-buttons">
+        <div class="_item pulse-button" :style="{ background: stringifyColor(activeColor) }" @click.stop="toggleFilterOpts($event)" @mouseover="setActiveMenu('filters')" @mouseleave="setActiveMenu()">
+          <i class="fa fa-sliders"></i>
+          <span v-if="menuHovered == 'filters'">Filters</span>
         </div>
-        <transition name="filter-types">
-          <div v-if="showFilters" class="_types">
-            <article v-for="(filter, key) in filters" @click.stop="setActiveFilter(key)" :style="{ background: stringifyColor(activeColor) }">{{ filter.name }}
-            </article>
-          </div>
-        </transition>
-      </div>
+        <div class="_item pulse-button" :style="{ background: stringifyColor(activeColor) }" @click.stop="toggleFilterOpts($event)">
+          <i class="fa fa-sliders"></i>
+          <span>Filters</span>
+        </div>
+        <!-- <transition name="filter-types">
+  <div v-if="showFilters" class="_types">
+    <article v-for="(filter, key) in filters" @click.stop="setActiveFilter(key)" :style="{ background: stringifyColor(activeColor) }">{{ filter.name }}
+    </article>
+  </div>
+</transition>
+ -->
+      </nav>
       <transition name="filter-view">
         <div v-if="filterDialogOpen" class="filter-view" :style="{ background: stringifyColor(activeColor, 0.95) }">
           <div class="close-button" @click="closeActiveFilter()">

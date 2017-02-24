@@ -1,3 +1,7 @@
+// Variables
+$shadow-sm: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+$shadow-med: rgba(0, 0, 0, 0.188235) 0px 10px 30px, rgba(0, 0, 0, 0.227451) 0px 6px 10px;
+$shadow-lg: rgba(0, 0, 0, 0.247059) 0px 14px 45px, rgba(0, 0, 0, 0.219608) 0px 10px 18px;
 html, body {
   font-family: 'Titillium Web', sans-serif;
   box-sizing: border-box;
@@ -35,6 +39,10 @@ a {
       transform: translate3d(-50%, -2px, 0);
     }
   }
+}
+
+.fa {
+  font-size: 22px !important;
 }
 
 .divider {
@@ -85,6 +93,9 @@ a {
 }
 
 header {
+  display: flex;
+  width: 67.5%;
+  position: relative;
   .logo {
     width: 50px;
     cursor: pointer;
@@ -93,6 +104,32 @@ header {
     &:after {
       height: 50px;
       top: 10px;
+    }
+  }
+  menu {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 2rem;
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 0.5s;
+    article {
+      text-transform: uppercase;
+      font-size: 0.7em;
+      letter-spacing: 2px;
+      font-weight: 600;
+      a {
+        &:hover:after {
+          transform: translate3d(-50%, 2px, 0);
+        }
+      }
+    }
+  }
+  &:hover {
+    menu {
+      max-height: 200px;
     }
   }
 }
@@ -125,22 +162,18 @@ header {
 }
 
 #active-project {
-  > * {
-    max-height: 1500px;
-    overflow: hidden;
-  }
   &.transitioning {
     ._type {
-      animation: changeProject 800ms ease-in-out forwards;
+      animation: changeProject 800ms cubic-bezier(.48, -0.12, .6, 1.26) forwards;
     }
     ._title {
-      animation: changeProject 800ms ease-in-out 100ms forwards;
+      animation: changeProject 800ms cubic-bezier(.48, -0.12, .6, 1.26) 100ms forwards;
     }
     ._subtitle {
-      animation: changeProject 800ms ease-in-out 200ms forwards;
+      animation: changeProject 800ms cubic-bezier(.48, -0.12, .6, 1.26) 200ms forwards;
     }
     ._description, ._link {
-      animation: changeProject 800ms ease-in-out 300ms forwards;
+      animation: changeProject 800ms cubic-bezier(.48, -0.12, .6, 1.26) 300ms forwards;
     }
   }
 }
@@ -167,10 +200,11 @@ header {
   top: 0;
   right: 0;
   border-radius: 2px;
-  box-shadow: 2px 8px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: $shadow-lg;
   border-radius: 4px;
   background: black;
   overflow: scroll;
+  z-index: 6;
   .track {
     position: relative;
     width: 100%;
@@ -250,7 +284,7 @@ header {
     height: 100%;
     padding: 1rem;
     background: rgb(215, 219, 109);
-    box-shadow: 1px 6px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: $shadow-med;
     border-radius: 100%;
     position: absolute;
     top: 0;
@@ -261,7 +295,7 @@ header {
       padding: 1.25rem;
       background: white;
       border-radius: 100%;
-      box-shadow: 1px 6px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: $shadow-sm;
       > ._inner {
         background-size: contain;
         background-repeat: no-repeat;
@@ -327,37 +361,40 @@ header {
   }
 }
 
-.filters {
+.menu-buttons {
+  position: absolute;
+  right: calc(35% - 75px);
+  top: 0;
+  height: 100%;
   font-size: 0.7em;
   letter-spacing: 3px;
   color: white;
   text-transform: uppercase;
   text-align: center;
-  overflow: hidden;
-  > .button {
-    border-radius: 4px;
-    box-shadow: 2px 8px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  > ._item {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    box-shadow: $shadow-sm;
     cursor: pointer;
     transition: background 0.3s;
     height: 50px;
     width: 155px;
-    position: absolute;
-    top: 50%;
-    right: calc(35% - 50px);
-    transform: translateY(-50%);
     z-index: 5;
-    figure {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-      height: 100%;
-      width: 100%;
-      > * {
-        margin: 0 5px;
-      }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    > * {
+      margin: 0 5px;
     }
   }
+}
+
+.filters {
   ._types {
     position: absolute;
     top: calc(50% + 70px);
@@ -407,7 +444,7 @@ header {
   max-width: 500px;
   max-height: 400px;
   border-radius: 4px;
-  box-shadow: 2px 8px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.247059) 0px 14px 45px, rgba(0, 0, 0, 0.219608) 0px 10px 18px;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);

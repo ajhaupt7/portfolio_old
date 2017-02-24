@@ -8,6 +8,7 @@ const app = new Vue({
     activeColor: [124, 242, 142],
     hoverTitle: null,
     hoverStyles: {},
+    menuHovered: null,
     showFilters: false,
     filterDialogOpen: false,
     filterDialogType: null,
@@ -22,11 +23,6 @@ const app = new Vue({
       return this.projects.filter((project) => {
         return val ? (type == 'tech' ? project[type].indexOf(val) !== -1 : project[type] === val) : project;
       });
-    }
-  },
-  watch: {
-    activeProject(activeProject, prevProject) {
-
     }
   },
   methods: {
@@ -60,7 +56,7 @@ const app = new Vue({
         project.tech.map((item) => {
           if (filters['tech'].options.indexOf(item) === -1) filters['tech'].options.push(item);
         });
-        if (filters['type'].options.indexOf(project.type) === -1) filters['type'].options.push(project.type);
+        if (project.type && filters['type'].options.indexOf(project.type) === -1) filters['type'].options.push(project.type);
       });
     },
     randomInt: function randomInt(min, max) {
@@ -94,6 +90,11 @@ const app = new Vue({
       this.filterDialogOpen = true;
       this.filterDialogType = key;
     },
+    toggleFilterOpts() {
+      this.showFilters = !this.showFilters;
+      const el = document.getElementById('filter-options-trigger');
+      this.triggerPulse(el);
+    },
     closeActiveFilter(event) {
       if (!event || (this.filterDialogOpen && !event.target.closest(".filter-view")) || (!this.filterDialogOpen && this.showFilters)) {
         this.filterDialogOpen = false;
@@ -107,6 +108,12 @@ const app = new Vue({
     },
     resetFilters() {
       this.filterSetting = { type: null, name: null, val: null };
+    },
+    triggerPulse(el) {
+      el.classList.add('pulse');
+      setTimeout(() => {
+        el.classList.remove('pulse');
+      }, 600);
     }
   }
 });
@@ -115,10 +122,5 @@ const app = new Vue({
 const pulseButton = document.querySelectorAll(".pulse-button");
 document.addEventListener('click', (event) => {
   const target = event.target.closest(".pulse-button");
-  if (target) {
-    target.classList.add('pulse');
-    setTimeout(() => {
-      target.classList.remove('pulse');
-    }, 600);
-  }
+  if (target) app.triggerPulse(target);
 })

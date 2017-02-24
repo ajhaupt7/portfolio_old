@@ -4,7 +4,7 @@ var projects = [{
   name: 'ShowMe',
   logo: 'showme_logo.png',
   type: 'Personal Project',
-  tech: ['React', 'Redux', 'MongoDB', 'Node'],
+  tech: ['React', 'Redux', 'MongoDB', 'Node', 'Logo Design'],
   description: '',
   dates: '',
   primaryColor: '',
@@ -13,7 +13,7 @@ var projects = [{
   name: 'Wakka Wizard',
   logo: 'wakka_logo.jpg',
   type: 'Personal Project',
-  tech: ['React', 'Redux', 'Node'],
+  tech: ['React', 'Redux', 'Node', 'Logo Design'],
   description: '',
   dates: '',
   primaryColor: '',
@@ -40,7 +40,7 @@ var projects = [{
   name: 'Gold Key PR',
   logo: 'goldkey_logo.png',
   type: 'Freelance Client',
-  tech: ['Wordpress', 'PHP', 'JS'],
+  tech: ['Wordpress', 'PHP', 'JS', 'Logo Design'],
   description: '',
   dates: '',
   primaryColor: '',
@@ -62,7 +62,7 @@ var projects = [{
   description: '',
   dates: '',
   primaryColor: '',
-  url: 'https://us.organicindia.com/'
+  url: 'https://us.organicindia.com/education'
 }, {
   name: 'Novapoint',
   logo: 'trimble_logo.png',
@@ -72,6 +72,58 @@ var projects = [{
   dates: '',
   primaryColor: '',
   url: 'http://www.novapoint.com/'
+}, {
+  name: 'Jackson Browne',
+  logo: 'jackson_logo.png',
+  type: 'Culture Foundry',
+  tech: ['MODx'],
+  description: '',
+  dates: '',
+  primaryColor: '',
+  url: 'http://www.jacksonbrowne.com/'
+}, {
+  name: 'Clean Power Research Dev Portal',
+  logo: 'cpr_logo.jpg',
+  type: 'Culture Foundry',
+  tech: ['Wordpress', 'JS'],
+  description: '',
+  dates: '',
+  primaryColor: '',
+  url: 'https://developers.cleanpower.com/'
+}, {
+  name: 'The Street Child Project',
+  logo: 'scp_logo.png',
+  type: 'Freelance Client',
+  tech: ['Rails', 'JS'],
+  description: '',
+  dates: '',
+  primaryColor: '',
+  url: 'http://www.novapoint.com/'
+}, {
+  name: 'JamLab',
+  logo: 'jamlab_logo.png',
+  type: 'Personal Project',
+  tech: ['Rails', 'JS', 'Logo Design'],
+  description: '',
+  dates: '',
+  primaryColor: '',
+  url: 'http://www.novapoint.com/'
+}, {
+  name: 'Suck it Trebek',
+  logo: 'suckittrebek_logo.png',
+  type: 'Personal Project',
+  tech: ['Ember', 'Logo Design'],
+  description: '',
+  dates: '',
+  primaryColor: '',
+  url: 'http://www.novapoint.com/'
+}, {
+  name: 'The Rest',
+  logo: 'ellipses.png',
+  tech: [],
+  description: '',
+  dates: '',
+  primaryColor: ''
 }];
 
 var filters = {
