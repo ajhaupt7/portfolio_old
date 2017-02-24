@@ -426,7 +426,7 @@ header {
 
 .menu-buttons {
   position: absolute;
-  right: calc(35% - 75px);
+  right: 35%;
   top: 0;
   height: 100%;
   font-size: 0.7em;
@@ -441,9 +441,9 @@ header {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; }
@@ -454,49 +454,56 @@ header {
     cursor: pointer;
     -webkit-transition: background 0.3s;
     transition: background 0.3s;
-    height: 50px;
-    width: 155px;
+    padding: 15px;
+    width: 50px;
     z-index: 5;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    margin-bottom: 1rem; }
+    margin-bottom: 1rem;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s; }
+    .menu-buttons > ._item:hover, .menu-buttons > ._item.visible {
+      width: 155px; }
+    .menu-buttons > ._item > span {
+      -webkit-transform: translateX(50px);
+              transform: translateX(50px);
+      position: absolute; }
     .menu-buttons > ._item > * {
       margin: 0 5px; }
-
-.filters ._types {
-  position: absolute;
-  top: calc(50% + 70px);
-  right: calc(35% - 45px);
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  width: 145px;
-  z-index: 1; }
-  .filters ._types > article {
-    display: block;
-    border-radius: 4px;
-    box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.12);
-    margin: 7.5px 0;
-    padding: 7.5px 15px;
-    cursor: pointer;
-    opacity: 0.9;
-    -webkit-transition: opacity 0.3s;
-    transition: opacity 0.3s; }
-    .filters ._types > article:hover {
-      opacity: 1; }
+  .menu-buttons ._types {
+    position: absolute;
+    top: calc(50% + 100px);
+    right: calc(35% - 45px);
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    width: 145px;
+    z-index: 1; }
+    .menu-buttons ._types > article {
+      display: block;
+      border-radius: 4px;
+      box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.12);
+      margin: 7.5px 0;
+      padding: 7.5px 15px;
+      cursor: pointer;
+      opacity: 0.9;
+      -webkit-transition: opacity 0.3s;
+      transition: opacity 0.3s; }
+      .menu-buttons ._types > article:hover {
+        opacity: 1; }
 
 .filter-types-enter-active, .filter-types-leave-active {
   -webkit-transition: all 0.9s;
   transition: all 0.9s; }
   .filter-types-enter-active article, .filter-types-leave-active article {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
     opacity: 1; }
     .filter-types-enter-active article:nth-child(1), .filter-types-leave-active article:nth-child(1) {
       -webkit-transition: all 250ms ease-in-out 150ms;
@@ -526,8 +533,8 @@ header {
 .filter-types-enter, .filter-types-leave-to {
   opacity: 0; }
   .filter-types-enter article, .filter-types-leave-to article {
-    -webkit-transform: translateY(-50px);
-            transform: translateY(-50px);
+    -webkit-transform: translateX(200px);
+            transform: translateX(200px);
     opacity: 0.5; }
 
 .filter-view {

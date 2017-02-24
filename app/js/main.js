@@ -10,7 +10,6 @@ var app = new Vue({
     activeColor: [124, 242, 142],
     hoverTitle: null,
     hoverStyles: {},
-    menuHovered: null,
     showFilters: false,
     filterDialogOpen: false,
     filterDialogType: null,
@@ -29,6 +28,11 @@ var app = new Vue({
       return this.projects.filter(function (project) {
         return val ? type == 'tech' ? project[type].indexOf(val) !== -1 : project[type] === val : project;
       });
+    },
+    altColor: function altColor() {
+      var idx = Math.floor(Math.random() * primaryColors.length);
+      var color = primaryColors[idx];
+      return 'rgba(' + color[0] + ',' + color[1] + ',' + color[2] + ', 1';
     }
   },
   methods: {
@@ -101,9 +105,9 @@ var app = new Vue({
       this.filterDialogOpen = true;
       this.filterDialogType = key;
     },
-    toggleFilterOpts: function toggleFilterOpts() {
+    toggleFilterOpts: function toggleFilterOpts(event) {
       this.showFilters = !this.showFilters;
-      var el = document.getElementById('filter-options-trigger');
+      var el = event.target.closest('.pulse-button');
       this.triggerPulse(el);
     },
     closeActiveFilter: function closeActiveFilter(event) {

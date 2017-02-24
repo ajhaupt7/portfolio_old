@@ -8,7 +8,6 @@ const app = new Vue({
     activeColor: [124, 242, 142],
     hoverTitle: null,
     hoverStyles: {},
-    menuHovered: null,
     showFilters: false,
     filterDialogOpen: false,
     filterDialogType: null,
@@ -23,7 +22,12 @@ const app = new Vue({
       return this.projects.filter((project) => {
         return val ? (type == 'tech' ? project[type].indexOf(val) !== -1 : project[type] === val) : project;
       });
-    }
+    },
+    altColor() {
+      const idx = Math.floor(Math.random() * primaryColors.length);
+      const color = primaryColors[idx];
+      return `rgba(${color[0]},${color[1]},${color[2]}, 1`;
+    },
   },
   methods: {
     getBackgroundStyles(project) {
@@ -90,9 +94,9 @@ const app = new Vue({
       this.filterDialogOpen = true;
       this.filterDialogType = key;
     },
-    toggleFilterOpts() {
+    toggleFilterOpts(event) {
       this.showFilters = !this.showFilters;
-      const el = document.getElementById('filter-options-trigger');
+      const el = event.target.closest('.pulse-button');
       this.triggerPulse(el);
     },
     closeActiveFilter(event) {
@@ -114,7 +118,7 @@ const app = new Vue({
       setTimeout(() => {
         el.classList.remove('pulse');
       }, 600);
-    }
+    },
   }
 });
 

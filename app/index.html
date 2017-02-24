@@ -73,21 +73,20 @@
         </transition-group>
       </div>
       <nav class="menu-buttons">
-        <div class="_item pulse-button" :style="{ background: stringifyColor(activeColor) }" @click.stop="toggleFilterOpts($event)" @mouseover="setActiveMenu('filters')" @mouseleave="setActiveMenu()">
-          <i class="fa fa-sliders"></i>
-          <span v-if="menuHovered == 'filters'">Filters</span>
+        <div class="_item pulse-button" :style="{ background: stringifyColor(activeColor) }" @click="setActiveProject($event, null, true)">
+          <i class="fa fa-user"></i>
+          <span>About Me</span>
         </div>
-        <div class="_item pulse-button" :style="{ background: stringifyColor(activeColor) }" @click.stop="toggleFilterOpts($event)">
+        <div class="_item pulse-button" :style="{ background: altColor }" @click.stop="toggleFilterOpts($event)">
           <i class="fa fa-sliders"></i>
           <span>Filters</span>
         </div>
-        <!-- <transition name="filter-types">
-  <div v-if="showFilters" class="_types">
-    <article v-for="(filter, key) in filters" @click.stop="setActiveFilter(key)" :style="{ background: stringifyColor(activeColor) }">{{ filter.name }}
-    </article>
-  </div>
-</transition>
- -->
+        <transition name="filter-types">
+          <div v-if="showFilters" class="_types">
+            <article v-for="(filter, key) in filters" @click.stop="setActiveFilter(key)" :style="{ background: altColor }">{{ filter.name }}
+            </article>
+          </div>
+        </transition>
       </nav>
       <transition name="filter-view">
         <div v-if="filterDialogOpen" class="filter-view" :style="{ background: stringifyColor(activeColor, 0.95) }">

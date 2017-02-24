@@ -363,7 +363,7 @@ header {
 
 .menu-buttons {
   position: absolute;
-  right: calc(35% - 75px);
+  right: 35%;
   top: 0;
   height: 100%;
   font-size: 0.7em;
@@ -373,7 +373,7 @@ header {
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   > ._item {
     border-top-left-radius: 4px;
@@ -381,23 +381,29 @@ header {
     box-shadow: $shadow-sm;
     cursor: pointer;
     transition: background 0.3s;
-    height: 50px;
-    width: 155px;
+    padding: 15px;
+    width: 50px;
     z-index: 5;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-bottom: 1rem;
+    transition: all 0.3s;
+    &:hover, &.visible {
+      width: 155px;
+    }
+    > span {
+      transform: translateX(50px);
+      position: absolute;
+    }
+    &.visible {}
     > * {
       margin: 0 5px;
     }
   }
-}
-
-.filters {
   ._types {
     position: absolute;
-    top: calc(50% + 70px);
+    top: calc(50% + 100px);
     right: calc(35% - 45px);
     transform: translateY(-50%);
     width: 145px;
@@ -421,7 +427,7 @@ header {
 .filter-types-enter-active, .filter-types-leave-active {
   transition: all 0.9s;
   article {
-    transform: translateY(0);
+    transform: translateX(0);
     opacity: 1;
     @for $i from 1 through 8 {
       &:nth-child(#{$i}) {
@@ -434,7 +440,7 @@ header {
 .filter-types-enter, .filter-types-leave-to {
   opacity: 0;
   article {
-    transform: translateY(-50px);
+    transform: translateX(200px);
     opacity: 0.5;
   }
 }
