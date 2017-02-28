@@ -3,6 +3,7 @@ const app = new Vue({
   data: {
     projects: projects,
     filters: filters,
+    loaded: false,
     activeProject: aboutMe,
     aboutMe: aboutMe,
     activeColor: [124, 242, 142],
@@ -15,6 +16,24 @@ const app = new Vue({
   },
   created() {
     this.assignColorsAndFilters();
+    const introEls = document.getElementById('intro').children;
+    introEls[0].classList.add("-visible");
+    setTimeout(() => {
+      introEls[0].classList.remove("-visible");
+      introEls[0].classList.add("-leave");
+    }, 1600);
+    setTimeout(() => {
+      introEls[1].classList.add("-visible");
+    }, 1500);
+    setTimeout(() => {
+      introEls[1].classList.remove("-visible");
+      introEls[1].classList.add("-leave");
+    }, 2500);
+    setTimeout(() => {
+      this.loaded = true;
+    }, 2800);
+
+    debugger;
   },
   computed: {
     renderedProjects() {
@@ -24,6 +43,7 @@ const app = new Vue({
       });
     },
     altColor() {
+      const { activeColor } = this;
       const idx = Math.floor(Math.random() * primaryColors.length);
       const color = primaryColors[idx];
       return `rgba(${color[0]},${color[1]},${color[2]}, 1`;
@@ -100,7 +120,7 @@ const app = new Vue({
       this.triggerPulse(el);
     },
     closeActiveFilter(event) {
-      if (!event || (this.filterDialogOpen && !event.target.closest(".filter-view")) || (!this.filterDialogOpen && this.showFilters)) {
+      if (!event || (this.filterDialogOpen && !event.target.closest(".filter-view")) || (!this.filterDialogOpen && !event.target.closest(".pulse-button"))) {
         this.filterDialogOpen = false;
         this.filterDialogType = null;
         this.showFilters = false;
@@ -109,6 +129,8 @@ const app = new Vue({
     setFilter(type, val, name) {
       this.filterSetting = { val: val, name: name, type: type };
       this.closeActiveFilter();
+      // const projectsDiv = document.getElementById('projects');
+      // TweenLite.to(projectsDiv, 1, { scrollTo: 0, ease: Power2.easeOut });
     },
     resetFilters() {
       this.filterSetting = { type: null, name: null, val: null };
@@ -121,6 +143,7 @@ const app = new Vue({
     },
   }
 });
+
 
 // DOM Ready
 const pulseButton = document.querySelectorAll(".pulse-button");

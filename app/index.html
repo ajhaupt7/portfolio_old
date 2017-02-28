@@ -15,7 +15,7 @@
   </head>
 
   <body>
-    <section class="main" id="app" :class="{ 'filter-view-open': filterDialogOpen }" @click="closeActiveFilter($event)">
+    <section class="main" id="app" :class="{ 'filter-view-open': filterDialogOpen, 'loaded': loaded }" @click="closeActiveFilter($event)">
       <header>
         <div class="logo pulse-button" @click="setActiveProject($event, null, true)">
           <svg viewBox="82.5 39.5 157 187">
@@ -26,12 +26,10 @@
           </svg>
         </div>
         <menu>
-          <article><a href="javascript:void()">About Me</a></article>
-          <article><a href="javascript:void()">Facebook</a></article>
-          <article><a href="javascript:void()">Github</a></article>
-          <article><a href="javascript:void()">LinkedIn</a></article>
-          <article><a href="javascript:void()">Soundcloud</a></article>
-          <article><a href="javascript:void()">Email</a></article>
+          <article><a href="https://www.facebook.com/andrew.haupt.7" target="_blank">Facebook</a></article>
+          <article><a href="https://github.com/ajhaupt7" target="_blank">Github</a></article>
+          <article><a href="https://www.linkedin.com/in/andrewhaupt2015/" target="_blank">LinkedIn</a></article>
+          <article><a href="MAILTO:ajhaupt7@gmail.com" target="_blank">Email</a></article>
         </menu>
       </header>
       <div class="content" id="content">
@@ -77,7 +75,7 @@
           <i class="fa fa-user"></i>
           <span>About Me</span>
         </div>
-        <div class="_item pulse-button" :style="{ background: altColor }" @click.stop="toggleFilterOpts($event)">
+        <div class="_item pulse-button" :class="{visible: showFilters}" :style="{ background: altColor }" @click="toggleFilterOpts($event)">
           <i class="fa fa-sliders"></i>
           <span>Filters</span>
         </div>
@@ -108,19 +106,19 @@
         </div>
       </transition>
       <div class="dimming-cell"></div>
+      <div class="tagline">
+        <span>Keep it Simple.</span><span class="-bold"> Make it Dope.</span>
+      </div>
     </section>
-    <section class="intro-message">
-      <span>
-        <span>Keep</span> <span>it</span> <span>Simple.</span>
-      <span>
-      <span>
-        <span>Make</span> <span>it</span> <span>Dope.</span>
-      <span>
+    <section class="intro-message" id="intro">
+      <article>Keep it Simple.</article>
+      <article class="-bold">Make it Dope.</article>
     </section>
     <!--build:js js/main.min.js -->
     <script src="js/vue.dev.js"></script>
     <script src="js/velocity.min.js"></script>
-    <script src="js/TweenMax.min.js"></script>
+    <script src="js/TweenLite.min.js"></script>
+    <script src="js/ScrollToPlugin.min.js"></script>
     <script src="js/projects.js"></script>
     <script src="js/main.js"></script>
     <!-- endbuild -->

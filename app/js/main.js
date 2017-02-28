@@ -5,6 +5,7 @@ var app = new Vue({
   data: {
     projects: projects,
     filters: filters,
+    loaded: false,
     activeProject: aboutMe,
     aboutMe: aboutMe,
     activeColor: [124, 242, 142],
@@ -16,7 +17,27 @@ var app = new Vue({
     filterSetting: { type: null, name: null, val: null }
   },
   created: function created() {
+    var _this = this;
+
     this.assignColorsAndFilters();
+    var introEls = document.getElementById('intro').children;
+    introEls[0].classList.add("-visible");
+    setTimeout(function () {
+      introEls[0].classList.remove("-visible");
+      introEls[0].classList.add("-leave");
+    }, 1600);
+    setTimeout(function () {
+      introEls[1].classList.add("-visible");
+    }, 1500);
+    setTimeout(function () {
+      introEls[1].classList.remove("-visible");
+      introEls[1].classList.add("-leave");
+    }, 2500);
+    setTimeout(function () {
+      _this.loaded = true;
+    }, 2800);
+
+    debugger;
   },
 
   computed: {
@@ -30,6 +51,8 @@ var app = new Vue({
       });
     },
     altColor: function altColor() {
+      var activeColor = this.activeColor;
+
       var idx = Math.floor(Math.random() * primaryColors.length);
       var color = primaryColors[idx];
       return 'rgba(' + color[0] + ',' + color[1] + ',' + color[2] + ', 1';
@@ -58,13 +81,13 @@ var app = new Vue({
       return 'rgba(' + attrs[0] + ',' + attrs[1] + ',' + attrs[2] + ', ' + (alpha || 1) + ')';
     },
     assignColorsAndFilters: function assignColorsAndFilters() {
-      var _this = this;
+      var _this2 = this;
 
       this.activeColor = this.randomColor();
       this.projects.map(function (project) {
         var idx = Math.floor(Math.random() * primaryColors.length);
         var attrs = primaryColors[idx];
-        project.primaryColor = _this.randomColor();
+        project.primaryColor = _this2.randomColor();
         project.tech.map(function (item) {
           if (filters['tech'].options.indexOf(item) === -1) filters['tech'].options.push(item);
         });
@@ -76,7 +99,7 @@ var app = new Vue({
       return Math.floor(Math.random() * (max - min + 1) + min);
     },
     setActiveProject: function setActiveProject(event, project, aboutMe) {
-      var _this2 = this;
+      var _this3 = this;
 
       var tile = event.target.closest(".tile");
       var projectToSet = aboutMe ? this.aboutMe : project;
@@ -85,7 +108,7 @@ var app = new Vue({
         var contentArea = document.getElementById('active-project');
         contentArea.classList.add('transitioning');
         setTimeout(function () {
-          _this2.activeProject = projectToSet || null;
+          _this3.activeProject = projectToSet || null;
         }, 600);
         setTimeout(function () {
           contentArea.classList.remove('transitioning');
@@ -111,7 +134,7 @@ var app = new Vue({
       this.triggerPulse(el);
     },
     closeActiveFilter: function closeActiveFilter(event) {
-      if (!event || this.filterDialogOpen && !event.target.closest(".filter-view") || !this.filterDialogOpen && this.showFilters) {
+      if (!event || this.filterDialogOpen && !event.target.closest(".filter-view") || !this.filterDialogOpen && !event.target.closest(".pulse-button")) {
         this.filterDialogOpen = false;
         this.filterDialogType = null;
         this.showFilters = false;
@@ -120,6 +143,8 @@ var app = new Vue({
     setFilter: function setFilter(type, val, name) {
       this.filterSetting = { val: val, name: name, type: type };
       this.closeActiveFilter();
+      // const projectsDiv = document.getElementById('projects');
+      // TweenLite.to(projectsDiv, 1, { scrollTo: 0, ease: Power2.easeOut });
     },
     resetFilters: function resetFilters() {
       this.filterSetting = { type: null, name: null, val: null };
