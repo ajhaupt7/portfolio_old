@@ -20,24 +20,11 @@ var app = new Vue({
     var _this = this;
 
     this.assignColorsAndFilters();
-    var introEls = document.getElementById('intro').children;
-    introEls[0].classList.add("-visible");
-    setTimeout(function () {
-      introEls[0].classList.remove("-visible");
-      introEls[0].classList.add("-leave");
-    }, 1600);
-    setTimeout(function () {
-      introEls[1].classList.add("-visible");
-    }, 1500);
-    setTimeout(function () {
-      introEls[1].classList.remove("-visible");
-      introEls[1].classList.add("-leave");
-    }, 2500);
+    var intro = document.getElementById('intro');
     setTimeout(function () {
       _this.loaded = true;
-    }, 2800);
-
-    debugger;
+      intro.classList.add("hidden");
+    }, 5200);
   },
 
   computed: {
@@ -143,8 +130,6 @@ var app = new Vue({
     setFilter: function setFilter(type, val, name) {
       this.filterSetting = { val: val, name: name, type: type };
       this.closeActiveFilter();
-      // const projectsDiv = document.getElementById('projects');
-      // TweenLite.to(projectsDiv, 1, { scrollTo: 0, ease: Power2.easeOut });
     },
     resetFilters: function resetFilters() {
       this.filterSetting = { type: null, name: null, val: null };

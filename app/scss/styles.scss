@@ -62,7 +62,7 @@ a {
 #app {
   opacity: 0;
   pointer-events: none;
-  transition: opacity 1200ms;
+  transition: opacity 1500ms;
   max-height: 0;
   &.loaded {
     opacity: 1;
@@ -72,26 +72,59 @@ a {
 }
 
 .intro-message {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 3em;
-  transition: all 0.5s;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  margin: 0 auto;
+  border-right: 2px solid rgba(0, 0, 0, .75);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translate3d(-50%, -65.5%, 0);
+  max-height: 100vh;
+  transition: all 300ms ease-in-out;
+  &.hidden {
+    max-height: 0;
+    opacity: 0;
+    // transform: translate3d(-50%, 1000px, 0);
+  }
+}
+
+.typewriter {
+  animation: typewriter 3.5s steps(25) 1.5s 1 normal both, blinkTextCursor 500ms steps(25) infinite normal;
+}
+
+.mobile-menu {
+  display: none;
   width: 100%;
-  height: 100%;
-  > article {
-    position: absolute;
-    transition: all 700ms cubic-bezier(0.75, -0.03, 0.33, 1.18);
-    &:not(.-visible) {
-      transform: translateY(-100px);
-      opacity: 0;
-    }
-    &.-leave {
-      transform: translateY(100px);
-    }
+  bottom: 0;
+  left: 0;
+  justify-content: space-around;
+}
+
+@keyframes typewriter {
+  0% {
+    width: 0;
+  }
+  40% {
+    width: 6.2em;
+  }
+  60% {
+    width: 6.2em;
+  }
+  100% {
+    width: 12.8em;
+  }
+}
+
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: rgba(0, 0, 0, .75);
+  }
+  to {
+    border-right-color: transparent;
   }
 }
 
@@ -144,6 +177,12 @@ header {
   display: flex;
   width: 67.5%;
   position: relative;
+  transform: translateY(-500px);
+  transition: transform 1500ms cubic-bezier(0.75, -0.03, 0.33, 1.18);
+  transition-delay: 100ms;
+  &.on-page {
+    transform: translateY(0);
+  }
   .logo {
     width: 50px;
     cursor: pointer;
@@ -154,37 +193,54 @@ header {
       top: 10px;
     }
   }
-  menu {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0 2rem;
-    max-height: 0px;
-    overflow: hidden;
-    transition: all 0.5s;
-    article {
-      text-transform: uppercase;
-      font-size: 0.7em;
-      letter-spacing: 2px;
-      font-weight: 600;
-      a {
-        &:hover:after {
-          transform: translate3d(-50%, 2px, 0);
-        }
-      }
+  &:hover {
+    + menu {
+      opacity: 1;
     }
   }
+}
+
+.menu {
+  position: absolute;
+  top: 3.5rem;
+  right: 35%;
+  display: flex;
+  width: calc(55% - 3rem);
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 2rem;
+  opacity: 0;
+  transition: all 0.5s;
   &:hover {
-    menu {
-      max-height: 200px;
+    opacity: 1;
+  }
+}
+
+menu {
+  article {
+    text-transform: uppercase;
+    font-size: 0.7em;
+    letter-spacing: 2px;
+    font-weight: 600;
+    a {
+      &:hover:after {
+        transform: translate3d(-50%, 2px, 0);
+      }
     }
   }
 }
 
 .content {
-  width: 50%;
+  width: 55%;
   padding: 1rem 2rem 0 0;
+  background: white;
+  z-index: 10;
+  position: relative;
+  transform: translateX(-500px);
+  transition: transform 1000ms ease-in-out;
+  &.on-page {
+    transform: translateX(0);
+  }
   ._title-wrap {
     margin-top: 10px;
     ._type {
@@ -220,8 +276,11 @@ header {
     ._subtitle {
       animation: changeProject 800ms cubic-bezier(.48, -0.12, .6, 1.26) 200ms forwards;
     }
-    ._description, ._link {
+    ._description {
       animation: changeProject 800ms cubic-bezier(.48, -0.12, .6, 1.26) 300ms forwards;
+    }
+    ._link {
+      animation: changeProject 800ms cubic-bezier(.48, -0.12, .6, 1.26) 400ms forwards;
     }
   }
 }
@@ -244,7 +303,7 @@ header {
 .projects {
   width: 35%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   border-radius: 2px;
@@ -252,7 +311,13 @@ header {
   border-radius: 4px;
   background: black;
   overflow: scroll;
-  z-index: 6;
+  z-index: 16;
+  transform: translateX(500px);
+  transition: transform 1500ms cubic-bezier(0.75, -0.03, 0.33, 1.18);
+  transition-delay: 200ms;
+  &.on-page {
+    transform: translateX(0);
+  }
   .track {
     position: relative;
     width: 100%;
@@ -271,7 +336,7 @@ header {
   font-size: 1.7em;
   color: white;
   padding: 1rem;
-  z-index: 15;
+  z-index: 25;
   font-weight: 100;
   letter-spacing: 2px;
   border-radius: 2px;
@@ -296,6 +361,7 @@ header {
   position: absolute;
   top: 0;
   left: 50%;
+  z-index: 20;
   transform: translate3d(-50%, 0, 0);
   transition: all 500ms cubic-bezier(0.75, -0.03, 0.33, 1.18);
   @for $i from 1 through 20 {
@@ -404,10 +470,17 @@ header {
   color: white;
   text-transform: uppercase;
   text-align: center;
+  z-index: 15;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
+  transform: translateX(500px);
+  transition: transform 1500ms cubic-bezier(0.75, -0.03, 0.33, 1.18);
+  transition-delay: 200ms;
+  &.on-page {
+    transform: translateX(0);
+  }
   > ._item {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -416,7 +489,7 @@ header {
     transition: background 0.3s;
     padding: 15px;
     width: 50px;
-    z-index: 5;
+    z-index: 15;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -441,7 +514,7 @@ header {
     right: calc(35% - 45px);
     transform: translateY(-50%);
     width: 145px;
-    z-index: 1;
+    z-index: 15;
     > article {
       display: block;
       border-radius: 4px;
@@ -591,4 +664,64 @@ header {
 
 .filter-monitor-enter, .filter-monitor-leave-to {
   transform: translateY(-200px);
+}
+
+@media(max-width:768px) {
+  .main {
+    padding: 3rem 0 0 0;
+  }
+  header {
+    padding: 0 2rem;
+  }
+  .menu {
+    display: none;
+  }
+  .mobile-menu {
+    display: flex;
+    padding: 15px 0;
+  }
+  .content {
+    width: 100%;
+    display: block;
+    padding: 1rem 2rem;
+  }
+  .projects {
+    position: relative;
+    margin-top: 1rem;
+    width: 100%;
+    .track {
+      display: flex;
+      margin: 2rem 0;
+      padding: 0.5rem 2rem;
+    }
+  }
+  .hover-title {
+    display: none;
+  }
+  .tile {
+    display: block;
+    margin: auto 2rem;
+    position: relative;
+    transform: none !important;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    > ._hover-overlay {
+      height: 125px;
+      width: 125px;
+    }
+    > ._outer {
+      padding: 0.9rem;
+      ._wrap {
+        padding: 0.6rem;
+      }
+    }
+  }
+  .tagline {
+    display: none;
+  }
+  .menu-buttons {
+    right: 0;
+    top: -120px;
+  }
 }
