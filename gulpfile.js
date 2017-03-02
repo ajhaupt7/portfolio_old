@@ -11,7 +11,8 @@ var gulp = require('gulp'),
   runSequence = require('run-sequence'),
   autoprefixer = require('gulp-autoprefixer'),
   sourcemaps = require('gulp-sourcemaps'),
-  babel = require('gulp-babel');
+  babel = require('gulp-babel'),
+  ghPages = require('gulp-gh-pages');;
 
 gulp.task('sass', function() {
   return gulp.src('app/scss/**/*.scss')
@@ -76,3 +77,8 @@ gulp.task('build', function(callback) {
 gulp.task('default', function(callback) {
   runSequence(['sass', 'babelify', 'browserSync', 'watch'], callback)
 })
+
+gulp.task('deploy', function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
+});
