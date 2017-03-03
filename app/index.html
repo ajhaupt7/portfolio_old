@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrew Haupt Portofolio</title>
+    <title>Andrew Haupt Portfolio</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!--build:css css/styles.min.css-->
     <link rel="stylesheet" href="css/styles.css">
@@ -66,18 +66,18 @@
       <transition name="hover-title">
         <div v-if="hoverTitle" class="hover-title" :style="hoverStyles">{{ hoverTitle }}</div>
       </transition>
-      <div class="projects" id="projects" :class="{ 'on-page': loaded }">
-        <transition name="filter-monitor">
-          <div class="filter-monitor" v-if="filterSetting.val" :style="{ background: stringifyColor(activeColor) }">
-            <div>Filtering by {{ filterSetting.name }} - {{ filterSetting.val }}</div>
-            <div class="close-button pulse-button" @click="resetFilters()">
-              <svg fill="rgba(255,255,255,0.75)" height="20" viewBox="0 0 24 24" width="20">
-                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                <path d="M0 0h24v24H0z" fill="none" />
-              </svg>
-            </div>
+      <transition name="filter-monitor">
+        <div class="filter-monitor" v-if="filterSetting.val" :style="{ background: stringifyColor(activeColor) }">
+          <div>Filtering by {{ filterSetting.name }} - {{ filterSetting.val }}</div>
+          <div class="close-button pulse-button" @click="resetFilters()">
+            <svg fill="rgba(255,255,255,0.75)" height="20" viewBox="0 0 24 24" width="20">
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+              <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
           </div>
-        </transition>
+        </div>
+      </transition>
+      <div class="projects" id="projects" :class="{ 'on-page': loaded }">
         <transition-group name="tile" tag="div" class="track">
           <div class="tile" v-for="(project, i) in renderedProjects" :key="project.name" :data-index="i" @mouseover="toggleHover($event, project, true)" @mouseleave="toggleHover($event, project)" @click="setActiveProject($event,project)">
             <div class="_hover-overlay" :style="project.hoverStyles"></div>

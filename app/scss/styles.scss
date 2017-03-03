@@ -636,7 +636,7 @@ menu {
   font-size: 0.9rem;
   letter-spacing: 2px;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
-  z-index: 5;
+  z-index: 17;
   .close-button {
     position: absolute;
     top: 50%;
@@ -723,5 +723,8 @@ menu {
   .menu-buttons {
     right: 0;
     top: -120px;
+  }
+  .filter-monitor {
+    width: 100%;
   }
 }
