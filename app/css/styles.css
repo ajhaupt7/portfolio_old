@@ -36,6 +36,17 @@ a {
     -webkit-transform: translate3d(-50%, -2px, 0);
             transform: translate3d(-50%, -2px, 0); }
 
+#app {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: opacity 1500ms;
+  transition: opacity 1500ms;
+  max-height: 0; }
+  #app.loaded {
+    opacity: 1;
+    max-height: 200vh;
+    pointer-events: initial; }
+
 .fa {
   font-size: 22px !important; }
 
@@ -49,17 +60,6 @@ a {
   margin: 1rem 0; }
   .divider.-white {
     background: white; }
-
-#app {
-  opacity: 0;
-  pointer-events: none;
-  -webkit-transition: opacity 1500ms;
-  transition: opacity 1500ms;
-  max-height: 0; }
-  #app.loaded {
-    opacity: 1;
-    max-height: 200vh;
-    pointer-events: initial; }
 
 .intro-message {
   font-size: 3em;
@@ -84,14 +84,6 @@ a {
 .typewriter {
   -webkit-animation: typewriter 3.5s steps(25) 1.5s 1 normal both, blinkTextCursor 500ms steps(25) infinite normal;
           animation: typewriter 3.5s steps(25) 1.5s 1 normal both, blinkTextCursor 500ms steps(25) infinite normal; }
-
-.mobile-menu {
-  display: none;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  -ms-flex-pack: distribute;
-      justify-content: space-around; }
 
 @-webkit-keyframes typewriter {
   0% {
@@ -124,13 +116,6 @@ a {
     border-right-color: rgba(0, 0, 0, 0.75); }
   to {
     border-right-color: transparent; } }
-
-.tagline {
-  position: absolute;
-  bottom: 3rem;
-  left: 5rem;
-  font-size: 0.8em;
-  letter-spacing: 2px; }
 
 .pulse-button {
   position: relative; }
@@ -205,34 +190,52 @@ header {
   header:hover + menu {
     opacity: 1; }
 
-.menu {
+menu {
   position: absolute;
-  top: 3.5rem;
-  right: 35%;
+  bottom: 3.5rem;
+  left: 3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: calc(55% - 3rem);
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  width: 55%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0 2rem;
-  opacity: 0;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s; }
-  .menu:hover {
-    opacity: 1; }
-
-menu article {
-  text-transform: uppercase;
-  font-size: 0.7em;
-  letter-spacing: 2px;
-  font-weight: 600; }
-  menu article a:hover:after {
-    -webkit-transform: translate3d(-50%, 2px, 0);
-            transform: translate3d(-50%, 2px, 0); }
+  padding: 0 2rem; }
+  menu.on-page article {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); }
+    menu.on-page article:nth-child(1) {
+      -webkit-transition: all 500ms ease-in-out 650ms;
+      transition: all 500ms ease-in-out 650ms; }
+    menu.on-page article:nth-child(2) {
+      -webkit-transition: all 500ms ease-in-out 800ms;
+      transition: all 500ms ease-in-out 800ms; }
+    menu.on-page article:nth-child(3) {
+      -webkit-transition: all 500ms ease-in-out 950ms;
+      transition: all 500ms ease-in-out 950ms; }
+    menu.on-page article:nth-child(4) {
+      -webkit-transition: all 500ms ease-in-out 1100ms;
+      transition: all 500ms ease-in-out 1100ms; }
+    menu.on-page article:nth-child(5) {
+      -webkit-transition: all 500ms ease-in-out 1250ms;
+      transition: all 500ms ease-in-out 1250ms; }
+  menu article {
+    text-transform: uppercase;
+    font-size: 0.7em;
+    letter-spacing: 2px;
+    -webkit-transform: translateY(500px);
+            transform: translateY(500px); }
+    menu article a:hover:after {
+      -webkit-transform: translate3d(-50%, 2px, 0);
+              transform: translate3d(-50%, 2px, 0); }
+    menu article a .fa {
+      display: none; }
+    menu article a span {
+      font-weight: 700; }
 
 .content {
   width: 55%;
@@ -800,12 +803,16 @@ menu article {
   header {
     padding: 0 2rem; }
   .menu {
-    display: none; }
-  .mobile-menu {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    padding: 15px 0; }
+    position: relative;
+    bottom: initial;
+    left: initial;
+    width: 100%;
+    -ms-flex-pack: distribute;
+        justify-content: space-around; }
+    .menu > article a .fa {
+      display: block; }
+    .menu > article a span {
+      display: none; }
   .content {
     width: 100%;
     display: block;

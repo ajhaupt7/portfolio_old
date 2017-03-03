@@ -16,11 +16,9 @@ const app = new Vue({
   },
   created() {
     this.assignColorsAndFilters();
-    const intro = document.getElementById('intro');
     setTimeout(() => {
       this.loaded = true;
-      intro.classList.add("hidden");
-    }, 5200);
+    }, 1000);
 
   },
   computed: {

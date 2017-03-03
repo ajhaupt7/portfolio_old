@@ -41,6 +41,18 @@ a {
   }
 }
 
+#app {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1500ms;
+  max-height: 0;
+  &.loaded {
+    opacity: 1;
+    max-height: 200vh;
+    pointer-events: initial;
+  }
+}
+
 .fa {
   font-size: 22px !important;
 }
@@ -56,18 +68,6 @@ a {
   margin: 1rem 0;
   &.-white {
     background: white;
-  }
-}
-
-#app {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 1500ms;
-  max-height: 0;
-  &.loaded {
-    opacity: 1;
-    max-height: 200vh;
-    pointer-events: initial;
   }
 }
 
@@ -96,14 +96,6 @@ a {
   animation: typewriter 3.5s steps(25) 1.5s 1 normal both, blinkTextCursor 500ms steps(25) infinite normal;
 }
 
-.mobile-menu {
-  display: none;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  justify-content: space-around;
-}
-
 @keyframes typewriter {
   0% {
     width: 0;
@@ -126,14 +118,6 @@ a {
   to {
     border-right-color: transparent;
   }
-}
-
-.tagline {
-  position: absolute;
-  bottom: 3rem;
-  left: 5rem;
-  font-size: 0.8em;
-  letter-spacing: 2px;
 }
 
 .pulse-button {
@@ -200,31 +184,39 @@ header {
   }
 }
 
-.menu {
+menu {
   position: absolute;
-  top: 3.5rem;
-  right: 35%;
+  bottom: 3.5rem;
+  left: 3rem;
   display: flex;
-  width: calc(55% - 3rem);
-  justify-content: space-around;
+  width: 55%;
+  justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
-  opacity: 0;
-  transition: all 0.5s;
-  &:hover {
-    opacity: 1;
+  &.on-page {
+    article {
+      transform: translateY(0);
+      @for $i from 1 through 5 {
+        &:nth-child(#{$i}) {
+          transition: all 500ms ease-in-out #{($i * 150) + 500}ms;
+        }
+      }
+    }
   }
-}
-
-menu {
   article {
     text-transform: uppercase;
     font-size: 0.7em;
     letter-spacing: 2px;
-    font-weight: 600;
+    transform: translateY(500px);
     a {
       &:hover:after {
         transform: translate3d(-50%, 2px, 0);
+      }
+      .fa {
+        display: none;
+      }
+      span {
+        font-weight: 700;
       }
     }
   }
@@ -674,11 +666,21 @@ menu {
     padding: 0 2rem;
   }
   .menu {
-    display: none;
-  }
-  .mobile-menu {
-    display: flex;
-    padding: 15px 0;
+    position: relative;
+    bottom: initial;
+    left: initial;
+    width: 100%;
+    justify-content: space-around;
+    > article {
+      a {
+        .fa {
+          display: block;
+        }
+        span {
+          display: none;
+        }
+      }
+    }
   }
   .content {
     width: 100%;

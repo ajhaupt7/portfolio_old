@@ -26,28 +26,6 @@
           </svg>
         </div>
       </header>
-      <menu class="menu">
-        <article>
-          <a href="https://www.facebook.com/andrew.haupt.7" target="_blank">
-            <span>Facebook</span>
-          </a>
-        </article>
-        <article>
-          <a href="https://github.com/ajhaupt7" target="_blank">
-            <span>Github</span>
-          </a>
-        </article>
-        <article>
-          <a href="https://www.linkedin.com/in/andrewhaupt2015/" target="_blank">
-            <span>LinkedIn</span>
-          </a>
-        </article>
-        <article>
-          <a href="MAILTO:ajhaupt7@gmail.com" target="_blank">
-            <span>Email</span>
-          </a>
-        </article>
-      </menu>
       <div class="content" id="content" :class="{ 'on-page': loaded }">
         <div v-if="activeProject" id="active-project" key="activeProject.name">
           <div class="_title-wrap">
@@ -125,34 +103,28 @@
         </div>
       </transition>
       <div class="dimming-cell"></div>
-      <div class="tagline">
-        <span>Keep it Simple.</span><span class="-bold"> Make it Dope.</span>
-      </div>
-      <menu class="mobile-menu">
+      <menu class="menu" :class="{ 'on-page': loaded }">
         <article>
           <a href="https://www.facebook.com/andrew.haupt.7" target="_blank">
-            <i class="fa fa-facebook"></i>
+            <i class="fa fa-facebook"></i><span>Facebook</span>
           </a>
         </article>
         <article>
           <a href="https://github.com/ajhaupt7" target="_blank">
-            <i class="fa fa-github"></i>
+            <i class="fa fa-github"></i><span>Github</span>
           </a>
         </article>
         <article>
           <a href="https://www.linkedin.com/in/andrewhaupt2015/" target="_blank">
-            <i class="fa fa-linkedin"></i>
+            <i class="fa fa-linkedin"></i><span>LinkedIn</span>
           </a>
         </article>
         <article>
           <a href="MAILTO:ajhaupt7@gmail.com" target="_blank">
-            <i class="fa fa-envelope"></i>
+            <i class="fa fa-envelope"></i><span>Email</span>
           </a>
         </article>
       </menu>
-    </section>
-    <section class="intro-message typewriter" id="intro">
-      <span>Keep it Simple.</span> <span class="-bold">Make it Dope.</span>
     </section>
     <!--build:js js/main.min.js -->
     <script src="js/vue.prod.js"></script>

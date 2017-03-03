@@ -20,11 +20,9 @@ var app = new Vue({
     var _this = this;
 
     this.assignColorsAndFilters();
-    var intro = document.getElementById('intro');
     setTimeout(function () {
       _this.loaded = true;
-      intro.classList.add("hidden");
-    }, 5200);
+    }, 1000);
   },
 
   computed: {
