@@ -1,6 +1,14 @@
 'use strict';
 
 var projects = [{
+  name: 'Hootenanny',
+  logo: 'hootenanny_logo.png',
+  type: 'Personal Project',
+  tech: ['Vue', 'Vuex', 'MongoDB', 'Node'],
+  description: '<p>Hootenanny matches up your Spotify listening preferences with thousands of music festivals all over the world to find the ones that best fit your taste. Users can filter festivals by date range and choose to factor their location into the scoring algorithm.<p>',
+  primaryColor: '',
+  url: 'https://www.hootenanny.io'
+}, {
   name: 'ShowMe',
   logo: 'showme_logo.png',
   type: 'Personal Project',
